@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Header Navigation</title>
+    <title>Social Media</title>
+    <link rel="icon" href="photos/rose.png" type="image/png">
     <style>
         body {
             margin: 0;
@@ -55,6 +56,26 @@
             font-weight: bold;
         }
 
+        .content {
+            max-width: 800px;
+            margin: 20px auto;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .content p {
+            font-size: 1.2em;
+            line-height: 1.5;
+        }
+
         /* MEDIA QUERY FOR MOBILE */
         @media (max-width: 768px) {
             .header {
@@ -64,22 +85,22 @@
             }
 
             .header .nav-links {
-                position: static; /* Removes centering for mobile */
+                position: static;
                 transform: none;
-                flex-direction: column; /* Stack links vertically */
-                gap: 10px; /* Reduce gap between links */
-                width: 100%; /* Full width on mobile */
+                flex-direction: column;
+                gap: 10px;
+                width: 100%;
             }
 
             .header .nav-links a {
                 font-size: 1.2em;
                 padding: 10px;
-                text-align: left; /* Align links to the left */
-                width: 100%; /* Full width for tap targets */
+                text-align: left;
+                width: 100%;
             }
 
             .header .logo {
-                margin-bottom: 10px; /* Add space below logo */
+                margin-bottom: 10px;
             }
         }
     </style>
@@ -98,6 +119,12 @@
             <a href="about.html">About Me</a>
         </div>
 
+    </div>
+
+    <div class="content">
+        <img src="photos/social.jpg" alt="Social Media Photo">
+        <p>I do not like social media and don't have any. I used to spend too much time looking at reels.
+        THE ONLY SOCIAL MEDIA I LIKE IS CASINO CHAT YEE HAW</p>
     </div>
 
 </body>
