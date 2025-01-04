@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Header Navigation</title>
+    <title>Social Media</title>
+    <link rel="icon" href="photos/rose.png" type="image/png">
     <style>
         body {
             margin: 0;
@@ -13,49 +14,95 @@
         }
 
         .header {
-        background-color: #eca3a7;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 10px 20px;
-        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-        position: relative; /* Add this for precise positioning */
-    }
+            background-color: #eca3a7;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
 
-    .header .logo {
-        font-size: 1.5em;
-        font-weight: bold;
-        color: #282c34;
-    }
+        .header .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #282c34;
+        }
 
-    .header .nav-links {
-        display: flex;
-        gap: 20px;
-        position: absolute; /* Position the nav-links absolutely */
-        left: 50%; /* Move the links to the center horizontally */
-        transform: translateX(-50%); /* Adjust for the links' width */
-    }
+        .header .nav-links {
+            display: flex;
+            gap: 20px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
 
-    .header .nav-links a {
-        text-decoration: none;
-        color: #282c34;
-        font-size: 1em;
-        padding: 10px 15px;
-        border-radius: 5px;
-        transition: background-color 0.3s;
-        font-weight: bold;
-    }
+        .header .nav-links a {
+            text-decoration: none;
+            color: #282c34;
+            font-size: 1em;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            font-weight: bold;
+        }
 
-    .header .nav-links a:hover {
-        background-color: #444;
-    }
+        .header .nav-links a:hover {
+            background-color: #444;
+        }
 
-    .header .nav-links .active {
-        color: #f04b4b;
-        font-weight: bold;
-    }
+        .header .nav-links .active {
+            color: #f04b4b;
+            font-weight: bold;
+        }
 
+        .content {
+            max-width: 800px;
+            margin: 20px auto;
+            text-align: center;
+            padding: 20px;
+        }
 
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .content p {
+            font-size: 1.2em;
+            line-height: 1.5;
+        }
+
+        /* MEDIA QUERY FOR MOBILE */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 10px;
+            }
+
+            .header .nav-links {
+                position: static;
+                transform: none;
+                flex-direction: column;
+                gap: 10px;
+                width: 100%;
+            }
+
+            .header .nav-links a {
+                font-size: 1.2em;
+                padding: 10px;
+                text-align: left;
+                width: 100%;
+            }
+
+            .header .logo {
+                margin-bottom: 10px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -72,6 +119,12 @@
             <a href="about.html">About Me</a>
         </div>
 
+    </div>
+
+    <div class="content">
+        <img src="photos/social.jpg" alt="Social Media Photo">
+        <p>I do not like social media and don't have any. I used to spend too much time looking at reels.
+        THE ONLY SOCIAL MEDIA I LIKE IS CASINO CHAT YEE HAW</p>
     </div>
 
 </body>
