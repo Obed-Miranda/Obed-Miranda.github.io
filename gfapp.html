@@ -210,20 +210,20 @@
 
             <div class="checkbox-grid">
                 <div class="checkbox-item">
-                    <input type="checkbox" id="wife-package">
-                    <label for="wife-package">Are you looking for the wife package?</label>
+                    <input type="checkbox" id="wifepackage">
+                    <label for="wifepackage">Are you looking for the wife package?</label>
                 </div>
                 <div class="checkbox-item">
-                    <input type="checkbox" id="want-kids">
-                    <label for="want-kids">Do you want kids?</label>
+                    <input type="checkbox" id="wantkids">
+                    <label for="wantkids">Do you want kids?</label>
                 </div>
                 <div class="checkbox-item">
-                    <input type="checkbox" id="marry-in-5-years">
-                    <label for="marry-in-5-years">Do you want to get married in the next 5 years?</label>
+                    <input type="checkbox" id="marryin5years">
+                    <label for="marryin5years">Do you want to get married in the next 5 years?</label>
                 </div>
                 <div class="checkbox-item">
-                    <input type="checkbox" id="like-mma-men">
-                    <label for="like-mma-men">Do you like amazing men who workout a lot and do MMA?</label>
+                    <input type="checkbox" id="likemmamen">
+                    <label for="likemmamen">Do you like amazing men who workout and do MMA?</label>
                 </div>
             </div>
 
@@ -254,10 +254,10 @@
                 describe: formObject.describe,
                 flowers: formObject.flowers,
                 animal: formObject.animal,
-                wifePackage: formObject['wifepackage'] ? 'Yes' : 'No',
-                wantKids: formObject['wantkids'] ? 'Yes' : 'No',
-                marryIn5Years: formObject['marryin5years'] ? 'Yes' : 'No',
-                likeMmaMen: formObject['likemmamen'] ? 'Yes' : 'No',
+                wifepackage: document.getElementById('wifepackage').checked ? 'Yes' : 'No',
+                wantkids: document.getElementById('wantkids').checked ? 'Yes' : 'No',
+                marryin5years: document.getElementById('marryin5years').checked ? 'Yes' : 'No',
+                likemmamen: document.getElementById('likemmamen').checked ? 'Yes' : 'No',
                 contact: formObject.contact || 'Not Provided'
             };
 
