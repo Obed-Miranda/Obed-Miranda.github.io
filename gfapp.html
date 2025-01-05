@@ -185,7 +185,7 @@
     <div class="girlfriend-form">
             <h2>Girlfriend Application</h2>
             <form action="submit_application.php" method="POST">
-                <label for="name">Full Name:</label>
+                <label for="name">Name:</label>
                 <input type="text" id="name" name="name" required>
 
                 <label for="age">Age:</label>
@@ -197,10 +197,17 @@
                 <label for="hobbies">What are your hobbies:</label>
                 <textarea id="hobbies" name="hobbies" rows="2" required></textarea>
 
-                <label for="date">Describe Yourself:</label>
-                <textarea id="date" name="date" rows="3" required></textarea>
+                <label for="describe">Describe Yourself:</label>
+                <textarea id="describe" name="describe" rows="3" required></textarea>
+
+                <label for="flowers">What is your favorite flower:</label>
+                <textarea id="flowers" name="flowers" rows="1" required></textarea>
+
+                <label for="animal">What is your favorite animal:</label>
+                <textarea id="animal" name="animal" rows="1" required></textarea>
 
                 <div class="checkbox-grid">
+
                     <div class="checkbox-item">
                         <input type="checkbox" id="wife-package">
                         <label for="wife-package">Are you looking for the wife package?</label>
@@ -217,8 +224,11 @@
                         <input type="checkbox" id="like-mma-men">
                         <label for="like-mma-men">Do you like amazing men who workout a lot and do MMA?</label>
                     </div>
-              </div>
 
+                  </div>
+
+                <label for="contact">Please put your instagram, phone number, or whatsapp number so I can contact you =] (Not Required)</label>
+                <textarea id="contact" name="contact" rows="1"></textarea>
 
                 <button type="submit">Submit Application</button>
             </form>
