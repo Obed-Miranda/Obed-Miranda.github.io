@@ -56,6 +56,61 @@
             font-weight: bold;
         }
 
+        .girlfriend-form {
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #333;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .girlfriend-form h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .girlfriend-form label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        .girlfriend-form input,
+        .girlfriend-form textarea,
+        .girlfriend-form button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        .girlfriend-form input[type="checkbox"] {
+            width: auto;
+            vertical-align: middle;
+            margin-right: 10px;
+            margin-top: 2px; /* Moves the checkbox down slightly */
+            transform: scale(1.5); /* Makes the checkbox larger */
+        }
+
+        .girlfriend-form .checkbox-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .girlfriend-form button {
+            background-color: #eca3a7;
+            color: #282c34;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .girlfriend-form button:hover {
+            background-color: #f04b4b;
+        }
+
         /* MEDIA QUERY FOR MOBILE */
         @media (max-width: 768px) {
             .header {
@@ -82,6 +137,20 @@
             .header .logo {
                 margin-bottom: 10px; /* Add space below logo */
             }
+
+            .girlfriend-form {
+                padding: 15px;
+            }
+
+            .girlfriend-form h2 {
+                font-size: 1.5em;
+            }
+
+            .girlfriend-form input,
+            .girlfriend-form textarea,
+            .girlfriend-form button {
+                font-size: 0.9em;
+            }
         }
     </style>
 </head>
@@ -100,6 +169,43 @@
         </div>
 
     </div>
+
+    <div class="girlfriend-form">
+            <h2>Girlfriend Application</h2>
+            <form action="submit_application.php" method="POST">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" required>
+
+                <label for="height">What is your height:</label>
+                <textarea id="height" name="height" rows="1" required></textarea>
+
+                <label for="hobbies">What are your hobbies:</label>
+                <textarea id="hobbies" name="hobbies" rows="2" required></textarea>
+
+                <label for="date">Why should you get this position:</label>
+                <textarea id="date" name="date" rows="3" required></textarea>
+
+                <div class="checkbox-container">
+                    <input type="checkbox" id="wife-package" name="wife-package">
+                    <label for="wife-package">Are you looking for the wife package?</label>
+                    <input type="checkbox" id="kids" name="kids">
+                    <label for="kids">Do you want kids?</label>
+                </div>
+
+                <div class="checkbox-container">
+                  <input type="checkbox" id="married" name="married">
+                  <label for="married">Do you want to get married in the next 5 years?</label>
+                  <input type="checkbox" id="fight" name="fight">
+                  <label for="fight">Do you like amazing men who workout a lot and do MMA?</label>
+                </div>
+
+
+                <button type="submit">Submit Application</button>
+            </form>
+     </div>
 
 </body>
 </html>
