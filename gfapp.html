@@ -78,7 +78,7 @@
         .girlfriend-form input,
         .girlfriend-form textarea,
         .girlfriend-form button {
-            width: 100%;
+            width: 90%;
             padding: 10px;
             margin-bottom: 15px;
             border: none;
@@ -152,6 +152,18 @@
                 font-size: 0.9em;
             }
         }
+
+        .checkbox-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          grid-gap: 10px;
+       }
+
+      .checkbox-item {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+      }
     </style>
 </head>
 <body>
@@ -185,22 +197,27 @@
                 <label for="hobbies">What are your hobbies:</label>
                 <textarea id="hobbies" name="hobbies" rows="2" required></textarea>
 
-                <label for="date">Why should you get this position:</label>
+                <label for="date">Describe Yourself:</label>
                 <textarea id="date" name="date" rows="3" required></textarea>
 
-                <div class="checkbox-container">
-                    <input type="checkbox" id="wife-package" name="wife-package">
-                    <label for="wife-package">Are you looking for the wife package?</label>
-                    <input type="checkbox" id="kids" name="kids">
-                    <label for="kids">Do you want kids?</label>
-                </div>
-
-                <div class="checkbox-container">
-                  <input type="checkbox" id="married" name="married">
-                  <label for="married">Do you want to get married in the next 5 years?</label>
-                  <input type="checkbox" id="fight" name="fight">
-                  <label for="fight">Do you like amazing men who workout a lot and do MMA?</label>
-                </div>
+                <div class="checkbox-grid">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="wife-package">
+                        <label for="wife-package">Are you looking for the wife package?</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="want-kids">
+                        <label for="want-kids">Do you want kids?</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="marry-in-5-years">
+                        <label for="marry-in-5-years">Do you want to get married in the next 5 years?</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="like-mma-men">
+                        <label for="like-mma-men">Do you like amazing men who workout a lot and do MMA?</label>
+                    </div>
+              </div>
 
 
                 <button type="submit">Submit Application</button>
