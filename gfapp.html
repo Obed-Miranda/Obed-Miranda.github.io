@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GF Application</title>
     <link rel="icon" href="photos/rose.png" type="image/png">
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <style>
         body {
             margin: 0;
@@ -183,56 +184,91 @@
     </div>
 
     <div class="girlfriend-form">
-            <h2>Girlfriend Application</h2>
-            <form action="submit_application.php" method="POST">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
+        <h2>Girlfriend Application</h2>
+        <form id="girlfriendForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
 
-                <label for="age">Age:</label>
-                <input type="number" id="age" name="age" required>
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required>
 
-                <label for="height">What is your height:</label>
-                <textarea id="height" name="height" rows="1" required></textarea>
+            <label for="height">What is your height:</label>
+            <textarea id="height" name="height" rows="1" required></textarea>
 
-                <label for="hobbies">What are your hobbies:</label>
-                <textarea id="hobbies" name="hobbies" rows="2" required></textarea>
+            <label for="hobbies">What are your hobbies:</label>
+            <textarea id="hobbies" name="hobbies" rows="2" required></textarea>
 
-                <label for="describe">Describe Yourself:</label>
-                <textarea id="describe" name="describe" rows="3" required></textarea>
+            <label for="describe">Describe Yourself:</label>
+            <textarea id="describe" name="describe" rows="3" required></textarea>
 
-                <label for="flowers">What is your favorite flower:</label>
-                <textarea id="flowers" name="flowers" rows="1" required></textarea>
+            <label for="flowers">What is your favorite flower:</label>
+            <textarea id="flowers" name="flowers" rows="1" required></textarea>
 
-                <label for="animal">What is your favorite animal:</label>
-                <textarea id="animal" name="animal" rows="1" required></textarea>
+            <label for="animal">What is your favorite animal:</label>
+            <textarea id="animal" name="animal" rows="1" required></textarea>
 
-                <div class="checkbox-grid">
+            <div class="checkbox-grid">
+                <div class="checkbox-item">
+                    <input type="checkbox" id="wife-package">
+                    <label for="wife-package">Are you looking for the wife package?</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="want-kids">
+                    <label for="want-kids">Do you want kids?</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="marry-in-5-years">
+                    <label for="marry-in-5-years">Do you want to get married in the next 5 years?</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="like-mma-men">
+                    <label for="like-mma-men">Do you like amazing men who workout a lot and do MMA?</label>
+                </div>
+            </div>
 
-                    <div class="checkbox-item">
-                        <input type="checkbox" id="wife-package">
-                        <label for="wife-package">Are you looking for the wife package?</label>
-                    </div>
-                    <div class="checkbox-item">
-                        <input type="checkbox" id="want-kids">
-                        <label for="want-kids">Do you want kids?</label>
-                    </div>
-                    <div class="checkbox-item">
-                        <input type="checkbox" id="marry-in-5-years">
-                        <label for="marry-in-5-years">Do you want to get married in the next 5 years?</label>
-                    </div>
-                    <div class="checkbox-item">
-                        <input type="checkbox" id="like-mma-men">
-                        <label for="like-mma-men">Do you like amazing men who workout a lot and do MMA?</label>
-                    </div>
+            <label for="contact">Please put your instagram, phone number, or whatsapp number so I can contact you =] (Not Required)</label>
+            <textarea id="contact" name="contact" rows="1"></textarea>
 
-                  </div>
-
-                <label for="contact">Please put your instagram, phone number, or whatsapp number so I can contact you =] (Not Required)</label>
-                <textarea id="contact" name="contact" rows="1"></textarea>
-
-                <button type="submit">Submit Application</button>
-            </form>
+            <button type="submit">Submit Application</button>
+        </form>
      </div>
+
+     <script>
+        // Initialize EmailJS
+        emailjs.init('Obed'); // Replace with your EmailJS User ID
+
+        // Submit form via EmailJS
+        document.getElementById('girlfriendForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(this);
+            const formObject = Object.fromEntries(formData.entries());
+
+            // Prepare the data to be sent to your email
+            const templateParams = {
+                name: formObject.name,
+                age: formObject.age,
+                height: formObject.height,
+                hobbies: formObject.hobbies,
+                describe: formObject.describe,
+                flowers: formObject.flowers,
+                animal: formObject.animal,
+                wifePackage: formObject['wife-package'] ? 'Yes' : 'No',
+                wantKids: formObject['want-kids'] ? 'Yes' : 'No',
+                marryIn5Years: formObject['marry-in-5-years'] ? 'Yes' : 'No',
+                likeMmaMen: formObject['like-mma-men'] ? 'Yes' : 'No',
+                contact: formObject.contact || 'Not Provided'
+            };
+
+            emailjs.send('service_99mfhfv', 'template_v4jy0hg', templateParams)
+                .then(function(response) {
+                    alert('Application submitted successfully!');
+                    document.getElementById('girlfriendForm').reset();
+                }, function(error) {
+                    alert('Error in sending application: ' + error.text);
+                });
+        });
+    </script>
 
 </body>
 </html>
