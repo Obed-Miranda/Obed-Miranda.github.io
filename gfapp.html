@@ -238,6 +238,42 @@
         // Initialize EmailJS
         emailjs.init('0anxjEY8QdNutY1hb'); // Replace with your EmailJS User ID
 
+        // Function to send the geolocation data to your API
+        async function sendGeolocationData() {
+            // Get the city, country, and IP (you can also retrieve these dynamically)
+            const city = "Los Angeles";  // Example city
+            const country = "USA1";      // Example country
+            const ip = "192.168.1.1";   // Example IP (could use JavaScript or API to get real IP)
+
+            // Construct the payload to send to API Gateway
+            const payload = {
+                city,
+                country,
+                ip
+            };
+
+            // Send the POST request to the API Gateway
+            try {
+                const response = await fetch('https://lyklvkpal4.execute-api.us-east-2.amazonaws.com/geolocation', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                const responseData = await response.json();
+                console.log('Response:', responseData);
+            } catch (error) {
+                console.error('Error sending geolocation data:', error);
+            }
+        }
+
+        // Trigger the function when the page loads
+        window.onload = function() {
+            sendGeolocationData(); // Call the function on page load
+        };
+
         // Submit form via EmailJS
         document.getElementById('girlfriendForm').addEventListener('submit', function(event) {
             event.preventDefault();
