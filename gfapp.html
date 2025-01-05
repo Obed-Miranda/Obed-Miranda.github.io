@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GF Application</title>
     <link rel="icon" href="photos/rose.png" type="image/png">
-    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
     <style>
         body {
             margin: 0;
@@ -253,10 +254,10 @@
                 describe: formObject.describe,
                 flowers: formObject.flowers,
                 animal: formObject.animal,
-                wifePackage: formObject['wife-package'] ? 'Yes' : 'No',
-                wantKids: formObject['want-kids'] ? 'Yes' : 'No',
-                marryIn5Years: formObject['marry-in-5-years'] ? 'Yes' : 'No',
-                likeMmaMen: formObject['like-mma-men'] ? 'Yes' : 'No',
+                wifePackage: formObject['wifepackage'] ? 'Yes' : 'No',
+                wantKids: formObject['wantkids'] ? 'Yes' : 'No',
+                marryIn5Years: formObject['marryin5years'] ? 'Yes' : 'No',
+                likeMmaMen: formObject['likemmamen'] ? 'Yes' : 'No',
                 contact: formObject.contact || 'Not Provided'
             };
 
