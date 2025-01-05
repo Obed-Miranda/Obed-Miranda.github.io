@@ -88,6 +88,50 @@
 </head>
 <body>
 
+  <script>
+     // Function to send the geolocation data to your API
+     async function getGeolocationData() {
+     try {
+         // Fetch IP information from ipinfo API
+         const ipResponse = await fetch('https://ipinfo.io/json?token=b3f73ac361aa50');
+         const ipData = await ipResponse.json();
+
+         const userIP = ipData.ip;
+         const userCountry = ipData.country;
+         const userCity = ipData.city;
+
+         console.log('User IP:', userIP);
+         console.log('User Country:', userCountry);
+         console.log('User City:', userCity);
+
+         // Now send this data to your Lambda API
+         fetch('https://lyklvkpal4.execute-api.us-east-2.amazonaws.com/geolocation', {
+             method: 'POST',
+             headers: {
+                 'Content-Type': 'application/json',
+             },
+             body: JSON.stringify({
+                 ip: userIP,
+                 country: userCountry,
+                 city: userCity,
+             })
+         })
+         .then(response => response.json())
+         .then(data => console.log('Data sent to API:', data))
+         .catch(error => console.error('Error sending data to API:', error));
+
+           } catch (error) {
+               console.error('Error fetching geolocation data:', error);
+           }
+       }
+
+     // Trigger the function when the page loads
+     window.onload = function() {
+         getGeolocationData(); // Call the function on page load
+     };
+
+    </script>
+
     <div class="header">
         <!-- Logo -->
         <div class="logo">Obed</div>
@@ -101,6 +145,6 @@
         </div>
 
     </div>
-    
+
 </body>
 </html>
