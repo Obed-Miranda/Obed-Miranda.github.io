@@ -239,35 +239,40 @@
         emailjs.init('0anxjEY8QdNutY1hb'); // Replace with your EmailJS User ID
 
         // Function to send the geolocation data to your API
-        async function sendGeolocationData() {
-            // Get the city, country, and IP (you can also retrieve these dynamically)
-            const city = "Los Angeles";  // Example city
-            const country = "USA1";      // Example country
-            const ip = "192.168.1.1";   // Example IP (could use JavaScript or API to get real IP)
+        async function getGeolocationData() {
+        try {
+            // Fetch IP information from ipinfo API
+            const ipResponse = await fetch('https://ipinfo.io/json?token=b3f73ac361aa50');
+            const ipData = await ipResponse.json();
 
-            // Construct the payload to send to API Gateway
-            const payload = {
-                city,
-                country,
-                ip
-            };
+            const userIP = ipData.ip;
+            const userCountry = ipData.country;
+            const userCity = ipData.city;
 
-            // Send the POST request to the API Gateway
-            try {
-                const response = await fetch('https://lyklvkpal4.execute-api.us-east-2.amazonaws.com/geolocation', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(payload)
-                });
+            console.log('User IP:', userIP);
+            console.log('User Country:', userCountry);
+            console.log('User City:', userCity);
 
-                const responseData = await response.json();
-                console.log('Response:', responseData);
-            } catch (error) {
-                console.error('Error sending geolocation data:', error);
-            }
-        }
+            // Now send this data to your Lambda API
+            fetch('https://lyklvkpal4.execute-api.us-east-2.amazonaws.com/geolocation', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    ip: userIP,
+                    country: userCountry,
+                    city: userCity,
+                })
+            })
+            .then(response => response.json())
+            .then(data => console.log('Data sent to API:', data))
+            .catch(error => console.error('Error sending data to API:', error));
+
+              } catch (error) {
+                  console.error('Error fetching geolocation data:', error);
+              }
+          }
 
         // Trigger the function when the page loads
         window.onload = function() {
