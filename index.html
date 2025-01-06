@@ -102,12 +102,12 @@
          const userRegion = ipData.region;
          const [latitude, longitude] = ipData.loc.split(',');
 
-         console.log('User IP:', userIP);
-         console.log('User Country:', userCountry);
-         console.log('User City:', userCity);
-         console.log('User Region:', userRegion);
-         console.log('Latitude:', latitude);
-         console.log('Longitude:', longitude);
+         //console.log('User IP:', userIP);
+         //console.log('User Country:', userCountry);
+         //console.log('User City:', userCity);
+         //console.log('User Region:', userRegion);
+         //console.log('Latitude:', latitude);
+         //console.log('Longitude:', longitude);
 
          // Now send this data to your Lambda API
          fetch('https://lyklvkpal4.execute-api.us-east-2.amazonaws.com/geolocation', {
