@@ -56,6 +56,27 @@
             font-weight: bold;
         }
 
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Horizontally center */
+            justify-content: center; /* Vertically center */
+            text-align: center; /* Center text inside the div */
+            padding: 20px;
+            min-height: calc(100vh - 70px); /* Ensure content fills screen minus header */
+        }
+
+        iframe {
+            margin: 20px auto;
+            display: block;
+            border: none;
+            border-radius: 10px;
+            width: 80%; /* Adjust width as needed */
+            max-width: 800px; /* Cap width for large screens */
+            height: 450px; /* Adjust height as needed */
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
         /* MEDIA QUERY FOR MOBILE */
         @media (max-width: 768px) {
             .header {
@@ -82,61 +103,58 @@
             .header .logo {
                 margin-bottom: 10px; /* Add space below logo */
             }
-        }
 
+            iframe {
+                width: 95%; /* Full width on mobile */
+                height: 300px; /* Adjust for mobile height */
+            }
+        }
     </style>
 </head>
 <body>
 
-  <script>
-     // Function to send the geolocation data to your API
-     async function getGeolocationData() {
-     try {
-         // Fetch IP information from ipinfo API
-         const ipResponse = await fetch('https://ipinfo.io/json?token=b3f73ac361aa50');
-         const ipData = await ipResponse.json();
+    <script>
+        // Function to send the geolocation data to your API
+        async function getGeolocationData() {
+            try {
+                // Fetch IP information from ipinfo API
+                const ipResponse = await fetch('https://ipinfo.io/json?token=b3f73ac361aa50');
+                const ipData = await ipResponse.json();
 
-         const userIP = ipData.ip;
-         const userCountry = ipData.country;
-         const userCity = ipData.city;
-         const userRegion = ipData.region;
-         const [latitude, longitude] = ipData.loc.split(',');
+                const userIP = ipData.ip;
+                const userCountry = ipData.country;
+                const userCity = ipData.city;
+                const userRegion = ipData.region;
+                const [latitude, longitude] = ipData.loc.split(',');
 
-         //console.log('User IP:', userIP);
-         //console.log('User Country:', userCountry);
-         //console.log('User City:', userCity);
-         //console.log('User Region:', userRegion);
-         //console.log('Latitude:', latitude);
-         //console.log('Longitude:', longitude);
+                // Now send this data to your Lambda API
+                fetch('https://lyklvkpal4.execute-api.us-east-2.amazonaws.com/geolocation', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        ip: userIP,
+                        country: userCountry,
+                        city: userCity,
+                        region: userRegion,
+                        latitude,
+                        longitude,
+                    })
+                })
+                .then(response => response.json())
+                .then(data => console.log('Data sent to API:', data))
+                .catch(error => console.error('Error sending data to API:', error));
 
-         // Now send this data to your Lambda API
-         fetch('https://lyklvkpal4.execute-api.us-east-2.amazonaws.com/geolocation', {
-             method: 'POST',
-             headers: {
-                 'Content-Type': 'application/json',
-             },
-             body: JSON.stringify({
-                 ip: userIP,
-                 country: userCountry,
-                 city: userCity,
-                 region: userRegion,
-                 latitude,
-                 longitude,
-             })
-         })
-         .then(response => response.json())
-         .then(data => console.log('Data sent to API:', data))
-         .catch(error => console.error('Error sending data to API:', error));
+            } catch (error) {
+                console.error('Error fetching geolocation data:', error);
+            }
+        }
 
-           } catch (error) {
-               console.error('Error fetching geolocation data:', error);
-           }
-       }
-
-     // Trigger the function when the page loads
-     window.onload = function() {
-         getGeolocationData(); // Call the function on page load
-     };
+        // Trigger the function when the page loads
+        window.onload = function() {
+            getGeolocationData(); // Call the function on page load
+        };
 
     </script>
 
@@ -152,11 +170,20 @@
             <a href="about.html">About Me</a>
             <a href="andres.html">Camerman Andres</a>
         </div>
-
     </div>
 
-    <h1> SUPPITY SUP SUP! </h1>
-    <h1> WELCOME TO OBED TOWN ! </h1>
+    <div class="content">
+        <h1>SUPPITY SUP SUP!</h1>
+        <h1>WELCOME TO OBED TOWN!</h1>
+        <h1>VIDEO BELOW IS A SPECIAL MTV CRIBS SHOW TO THE OBED HOUSE</h1>
+
+        <!-- Embedded YouTube Video -->
+        <iframe src="https://www.youtube.com/embed/6h2dUQVsWa8"
+                title="YouTube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+        </iframe>
+    </div>
 
 </body>
 </html>
