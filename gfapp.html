@@ -237,6 +237,36 @@
      </div>
 
      <script>
+
+     function getArizonaTime12Hour() {
+     const now = new Date();
+
+     // Convert to Arizona time (MST/Phoenix doesn't observe DST)
+     const options = {
+         timeZone: 'America/Phoenix',
+         hour: 'numeric',
+         minute: 'numeric',
+         second: 'numeric',
+         hour12: true,
+         year: 'numeric',
+         month: '2-digit',
+         day: '2-digit'
+     };
+
+         return new Intl.DateTimeFormat('en-US', options).format(now);
+     }
+
+     // Function to extract page name as user-friendly string
+     function getPageName() {
+     const path = window.location.pathname;
+
+         if (path === "/" || path.includes("index.html")) return "Homepage";
+         if (path.includes("gfapp.html")) return "Girlfriend Application";
+         if (path.includes("social.html")) return "Social Media";
+         if (path.includes("about.html")) return "About Me";
+         if (path.includes("andres.html")) return "Camerman Andres";
+         return "Unknown Page";
+     }
         // Initialize EmailJS
         emailjs.init('0anxjEY8QdNutY1hb'); // Replace with your EmailJS User ID
 
@@ -267,13 +297,15 @@
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    ip: userIP,
-                    country: userCountry,
-                    city: userCity,
-                    region: userRegion,
-                    latitude,
-                    longitude,
-                })
+                  ip: userIP,
+                  country: userCountry,
+                  city: userCity,
+                  region: userRegion,
+                  latitude,
+                  longitude,
+                  timestamp: getArizonaTime12Hour(), // 12-hour Arizona time
+                  pageVisited: getPageName() // Descriptive name of the page
+              })
             })
             .then(response => response.json())
             .then(data => console.log('Data sent to API:', data))
