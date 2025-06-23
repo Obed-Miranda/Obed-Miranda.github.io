@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Me</title>
+    <title>Girls</title>
     <link rel="icon" href="photos/rose.png" type="image/png">
     <style>
         body {
@@ -84,37 +84,119 @@
             }
         }
 
-        .andrespics {
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             text-align: center;
             padding: 20px;
         }
 
-        .andrespics img {
-            max-width: 60%;
+        .content img {
+            max-width: 15%;
             height: auto;
             margin: 20px 0;
             border-radius: 10px;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
         }
 
-        .andrespics p {
+        .content p {
             font-size: 1.2em;
             line-height: 1.6;
             margin: 10px 0;
         }
 
         @media (max-width: 768px) {
-            .andrespics img {
+            .content img {
                 max-width: 60%;
             }
 
-            .andrespics p {
+            .content p {
                 font-size: 1em;
             }
         }
     </style>
 </head>
 <body>
+
+  <script>
+  function getArizonaTime12Hour() {
+  const now = new Date();
+
+  // Convert to Arizona time (MST/Phoenix doesn't observe DST)
+  const options = {
+      timeZone: 'America/Phoenix',
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric',
+      hour12: true,
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit'
+  };
+
+      return new Intl.DateTimeFormat('en-US', options).format(now);
+  }
+
+  // Function to extract page name as user-friendly string
+  function getPageName() {
+  const path = window.location.pathname;
+
+      if (path === "/" || path.includes("index.html")) return "Homepage";
+      if (path.includes("gfapp.html")) return "Girlfriend Application";
+      if (path.includes("social.html")) return "Social Media";
+      if (path.includes("about.html")) return "About Me";
+      if (path.includes("andres.html")) return "Camerman Andres";
+      return "Unknown Page";
+  }
+
+
+      // Function to send the geolocation data to your API
+      async function getGeolocationData() {
+          try {
+              // Fetch IP information from ipinfo API
+              const ipResponse = await fetch('https://ipinfo.io/json?token=b3f73ac361aa50');
+              const ipData = await ipResponse.json();
+
+              const userIP = ipData.ip;
+              const userCountry = ipData.country;
+              const userCity = ipData.city;
+              const userRegion = ipData.region;
+              const [latitude, longitude] = ipData.loc.split(',');
+
+              // Now send this data to your Lambda API
+              fetch('https://lyklvkpal4.execute-api.us-east-2.amazonaws.com/geolocation', {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify({
+                    ip: userIP,
+                    country: userCountry,
+                    city: userCity,
+                    region: userRegion,
+                    latitude,
+                    longitude,
+                    timestamp: getArizonaTime12Hour(), // 12-hour Arizona time
+                    pageVisited: getPageName() // Descriptive name of the page
+                })
+              })
+              .then(response => response.json())
+              .then(data => console.log('Data sent to API:', data))
+              .catch(error => console.error('Error sending data to API:', error));
+
+          } catch (error) {
+              console.error('Error:', error);
+          }
+      }
+
+      // Trigger the function when the page loads
+      window.onload = function() {
+          getGeolocationData(); // Call the function on page load
+      };
+
+  </script>
 
     <div class="header">
         <!-- Logo -->
@@ -126,34 +208,18 @@
             <a href="gfapp.html">Girlfriend Application</a>
             <a href="social.html">Social Media</a>
             <a href="about.html">About Me</a>
-            <a href="andres.html" class="active">Camerman Andres</a>
-            <a href="girls.html">Girls</a>
+            <a href="andres.html">Camerman Andres</a>
+            <a href="girls.html"class="active">Girls</a>
         </div>
 
     </div>
 
-    <div class="andrespics">
-        <img src="photos/andres1.jpg" alt="Social Media Photo">
-        <p><strong>Cameraman Andres STATS:</strong></p>
-        <p>Age: 27</p>
-        <p>Height: 6'3 (188cm)</p>
-        <p>Weight: 205lbs (92 kg)</p>
-        <p>Car: 2022 Hyundai Velociter (Manual Transmission)</p>
-        <p>Marital Status: Single</p>
-        <p>Shoe size: 13</p>
-        <p>Eye Color: Brown</p>
-        <p>Hair: Black</p>
-        <p>Sign: Virgo</p>
-        <p>Pets: Dog (medium size)</p>
-        <p>Job: Nurse</p>
-        <p>Kids: 0</p>
-        <p>Born: Arizona, USA </p>
-        <p>Favorite Casino game: Craps</p>
-        <p>Favorite Sport: Basketball</p>
-        <p>Favorite Food: Seafood</p>
-        <p>Hobbies: Cooking, Running, Stand up Comedy, Painting</p>
-        <p>Likes: Youtube, Movies, Hanging with Friends, Sports, Doggies</p>
-        <img src="photos/andres2.jpg" alt="Social Media Photo">
+    <div class="content">
+
+    <h1>COMING SOON !</h1>
+
+
+
     </div>
 
 </body>
