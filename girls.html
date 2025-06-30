@@ -116,6 +116,61 @@
                 font-size: 1em;
             }
         }
+
+        .flags-section {
+        display: flex;
+        justify-content: space-between;
+        padding: 40px 20px;
+        gap: 40px;
+        flex-wrap: wrap;
+        }
+
+        .flag {
+            flex: 1;
+            min-width: 280px;
+            background-color: #2a2a2a;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+        }
+
+        .green-flag h2 {
+            color: #8ef58e;
+        }
+
+        .red-flag h2 {
+            color: #ff6b6b;
+        }
+
+        .flag ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 10px;
+        }
+
+        .flag ul li {
+            background-color: #1f1f1f;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            border-left: 4px solid;
+            font-size: 1em;
+        }
+
+        .green-flag ul li {
+            border-color: #4caf50;
+        }
+
+        .red-flag ul li {
+            border-color: #e53935;
+        }
+
+        @media (max-width: 768px) {
+            .flags-section {
+                flex-direction: column;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -217,9 +272,28 @@
 
     <div class="content">
 
-    <h1>COMING SOON !</h1>
+      <h1>Under Construction !!!!</h1>
 
-
+      <div class="flags-section">
+      <div class="flag green-flag">
+          <h2>✅ Green Flags</h2>
+          <ul>
+              <li>Loyalty</li>
+              <li>Good relationship with her Parents</li>
+              <li>Wants to Build a Family</li>
+              <li>No Social Media <3</li>
+          </ul>
+      </div>
+      <div class="flag red-flag">
+          <h2>❌ Red Flags</h2>
+          <ul>
+              <li>Smokes Cigarettes</li>
+              <li>Liers</li>
+              <li>Doesn't Want Kids</li>
+              <li>Party Girls</li>
+          </ul>
+      </div>
+  </div>
 
     </div>
 
