@@ -132,82 +132,83 @@
 <body>
 
   <script>
-let sessionStart = Date.now();
-let geoData = null;
+  function getArizonaTime12Hour() {
+  const now = new Date();
 
-// Get page name
-function getPageName() {
-    const path = window.location.pathname;
-    if (path === "/" || path.includes("index.html")) return "Homepage";
-    if (path.includes("gfapp.html")) return "Girlfriend Application";
-    if (path.includes("social.html")) return "Social Media";
-    if (path.includes("about.html")) return "About Me";
-    if (path.includes("andres.html")) return "Camerman Andres";
-    if (path.includes("girls.html")) return "Girls";
-    return "Unknown Page";
-}
-
-// Get Arizona time
-function getArizonaTime12Hour() {
-    const now = new Date();
-    const options = {
-        timeZone: 'America/Phoenix',
-        hour: 'numeric',
-        minute: 'numeric',
-        second: 'numeric',
-        hour12: true,
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit'
-    };
-    return new Intl.DateTimeFormat('en-US', options).format(now);
-}
-
-// Get IP and geo data — but don't send it yet
-async function getGeolocationData() {
-    try {
-        const ipResponse = await fetch('https://ipinfo.io/json?token=b3f73ac361aa50');
-        const ipData = await ipResponse.json();
-        const [latitude, longitude] = ipData.loc.split(',');
-
-        geoData = {
-            ip: ipData.ip,
-            country: ipData.country,
-            city: ipData.city,
-            region: ipData.region,
-            latitude,
-            longitude
-        };
-    } catch (error) {
-        console.error('Error getting geolocation:', error);
-    }
-}
-
-// On page unload, send all data
-window.addEventListener("beforeunload", function () {
-    const sessionEnd = Date.now();
-    const durationSec = Math.round((sessionEnd - sessionStart) / 1000);
-    if (durationSec < 2) return;
-
-    const payload = {
-        ...geoData,
-        durationSeconds: durationSec,
-        timestamp: getArizonaTime12Hour(),
-        pageVisited: getPageName()
-    };
-
-    navigator.sendBeacon(
-        'https://lyklvkpal4.execute-api.us-east-2.amazonaws.com/geolocation',
-        JSON.stringify(payload)
-    );
-  });
-
-  // Fetch the geo data on page load, but wait to send until unload
-  window.onload = function () {
-      getGeolocationData();
+  // Convert to Arizona time (MST/Phoenix doesn't observe DST)
+  const options = {
+      timeZone: 'America/Phoenix',
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric',
+      hour12: true,
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit'
   };
-  </script>
 
+      return new Intl.DateTimeFormat('en-US', options).format(now);
+  }
+
+  // Function to extract page name as user-friendly string
+  function getPageName() {
+  const path = window.location.pathname;
+
+      if (path === "/" || path.includes("index.html")) return "Homepage";
+      if (path.includes("gfapp.html")) return "Girlfriend Application";
+      if (path.includes("social.html")) return "Social Media";
+      if (path.includes("about.html")) return "About Me";
+      if (path.includes("andres.html")) return "Camerman Andres";
+      if (path.includes("girls.html")) return "Girls";
+      return "Unknown Page";
+  }
+
+
+      // Function to send the geolocation data to your API
+      async function getGeolocationData() {
+          try {
+              // Fetch IP information from ipinfo API
+              const ipResponse = await fetch('https://ipinfo.io/json?token=b3f73ac361aa50');
+              const ipData = await ipResponse.json();
+
+              const userIP = ipData.ip;
+              const userCountry = ipData.country;
+              const userCity = ipData.city;
+              const userRegion = ipData.region;
+              const [latitude, longitude] = ipData.loc.split(',');
+
+              // Now send this data to your Lambda API
+              fetch('https://lyklvkpal4.execute-api.us-east-2.amazonaws.com/geolocation', {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify({
+                    ip: userIP,
+                    country: userCountry,
+                    city: userCity,
+                    region: userRegion,
+                    latitude,
+                    longitude,
+                    timestamp: getArizonaTime12Hour(), // 12-hour Arizona time
+                    pageVisited: getPageName() // Descriptive name of the page
+                })
+              })
+              .then(response => response.json())
+              .then(data => console.log('Data sent to API:', data))
+              .catch(error => console.error('Error sending data to API:', error));
+
+          } catch (error) {
+              console.error('Error:', error);
+          }
+      }
+
+      // Trigger the function when the page loads
+      window.onload = function() {
+          getGeolocationData(); // Call the function on page load
+      };
+
+  </script>
 
     <div class="header">
         <!-- Logo -->
@@ -228,9 +229,11 @@ window.addEventListener("beforeunload", function () {
     <div class="content">
     <img src="photos/baby2.jpg" alt="Young Obed">
 
+    <p>SUPPITY SUP SUPPP. I was born on December 6th, 1998 (Sagitarrius/Стрелец).</p>
 
     <img src="photos/cowboy.JPG" alt="Cowboy Obed" class="force-same-size">
 
+    <p>My life goal is to retire at 30 years old, move to a country in Eastern Europe. Buy a nice house, some land, get married, have some kids(2-4), and raise some chickens and horses. I want to live a simple life. ❤️</p>
 
     <img src="photos/obed1.jpg" alt="Adult Obed">
 
