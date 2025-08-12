@@ -66,6 +66,15 @@
             min-height: calc(100vh - 70px); /* Ensure content fills screen minus header */
         }
 
+        .content img {
+          max-width: 100%;   /* Scale to fit device width */
+          height: auto;      /* Keep aspect ratio */
+          display: block;    /* Remove inline spacing */
+          margin: 10px auto; /* Center on page */
+          border-radius: 10px; /* Optional: make it look nice */
+          box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3); /* Optional shadow */
+      }
+
         iframe {
             margin: 20px auto;
             display: block;
