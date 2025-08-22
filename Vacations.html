@@ -1,133 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vacations</title>
-    <link rel="icon" href="photos/rose.png" type="image/png">
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #1a1a1a;
-            color: white;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vacations</title>
+  <link rel="icon" href="photos/rose.png" type="image/png">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #1a1a1a;
+      color: white;
+    }
 
-        .header {
-            background-color: #eca3a7;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 20px;
-            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-            position: relative;
-        }
+    .header {
+      background-color: #eca3a7;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+      position: relative;
+    }
 
-        .header .logo {
-            font-size: 1.5em;
-            font-weight: bold;
-            color: #282c34;
-        }
+    .header .logo {
+      font-size: 1.5em;
+      font-weight: bold;
+      color: #282c34;
+    }
 
-        .header .nav-links {
-            display: flex;
-            gap: 20px;
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-        }
+    .header .nav-links {
+      display: flex;
+      gap: 20px;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
 
-        .header .nav-links a {
-            text-decoration: none;
-            color: #282c34;
-            font-size: 1em;
-            padding: 10px 15px;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-            font-weight: bold;
-        }
+    .header .nav-links a {
+      text-decoration: none;
+      color: #282c34;
+      font-size: 1em;
+      padding: 10px 15px;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+      font-weight: bold;
+    }
 
-        .header .nav-links a:hover {
-            background-color: #444;
-        }
+    .header .nav-links a:hover {
+      background-color: #444;
+    }
 
-        .header .nav-links .active {
-            color: #f04b4b;
-            font-weight: bold;
-        }
+    .header .nav-links .active {
+      color: #f04b4b;
+      font-weight: bold;
+    }
 
-        .content {
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* Horizontally center */
-            justify-content: center; /* Vertically center */
-            text-align: center; /* Center text inside the div */
-            padding: 20px;
-            min-height: calc(100vh - 70px); /* Ensure content fills screen minus header */
-        }
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+      min-height: calc(100vh - 70px);
+    }
 
-        .content img {
-          max-width: 100%;   /* Scale to fit device width */
-          height: auto;      /* Keep aspect ratio */
-          display: block;    /* Remove inline spacing */
-          margin: 10px auto; /* Center on page */
-          border-radius: 10px; /* Optional: make it look nice */
-          box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3); /* Optional shadow */
+    iframe {
+      margin: 20px auto;
+      display: block;
+      border: none;
+      border-radius: 10px;
+      width: 80%;
+      max-width: 800px;
+      height: 450px;
+      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Carousel Styles */
+    .carousel {
+      position: relative;
+      max-width: 800px;
+      margin: 20px auto;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+      background: #000;
+      height: 550px; /* fixed so layout doesn’t jump */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .slide {
+      display: none;
+      text-align: center;
+      height: 100%;
+    }
+
+    .slide.active {
+      display: block;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 450px; /* lock image area */
+      object-fit: contain; /* keep aspect ratio, no crop */
+      background: #000;
+      border-radius: 12px 12px 0 0;
+    }
+
+    .caption {
+      background: rgba(0,0,0,0.7);
+      color: #fff;
+      font-size: 1em;
+      padding: 10px;
+      border-radius: 0 0 12px 12px;
+    }
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.5);
+      color: white;
+      border: none;
+      padding: 12px;
+      cursor: pointer;
+      border-radius: 50%;
+      font-size: 20px;
+    }
+
+    .prev { left: 10px; }
+    .next { right: 10px; }
+
+    .dots {
+      text-align: center;
+      margin: 10px 0;
+    }
+
+    .dot {
+      height: 12px;
+      width: 12px;
+      margin: 0 5px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      cursor: pointer;
+    }
+
+    .dot.active {
+      background-color: #717171;
+    }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      .header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
       }
 
-        iframe {
-            margin: 20px auto;
-            display: block;
-            border: none;
-            border-radius: 10px;
-            width: 80%; /* Adjust width as needed */
-            max-width: 800px; /* Cap width for large screens */
-            height: 450px; /* Adjust height as needed */
-            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
-        }
+      .header .nav-links {
+        position: static;
+        transform: none;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+      }
 
-        /* MEDIA QUERY FOR MOBILE */
-        @media (max-width: 768px) {
-            .header {
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 10px;
-            }
+      .header .nav-links a {
+        font-size: 1.2em;
+        padding: 10px;
+        text-align: left;
+        width: 100%;
+      }
 
-            .header .nav-links {
-                position: static; /* Removes centering for mobile */
-                transform: none;
-                flex-direction: column; /* Stack links vertically */
-                gap: 10px; /* Reduce gap between links */
-                width: 100%; /* Full width on mobile */
-            }
+      .header .logo {
+        margin-bottom: 10px;
+      }
 
-            .header .nav-links a {
-                font-size: 1.2em;
-                padding: 10px;
-                text-align: left; /* Align links to the left */
-                width: 100%; /* Full width for tap targets */
-            }
-
-            .header .logo {
-                margin-bottom: 10px; /* Add space below logo */
-            }
-
-            iframe {
-                width: 95%; /* Full width on mobile */
-                height: 300px; /* Adjust for mobile height */
-            }
-        }
-    </style>
+      iframe {
+        width: 95%;
+        height: 300px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <script>
+  <script>
     function getArizonaTime12Hour() {
-    const now = new Date();
-
-    // Convert to Arizona time (MST/Phoenix doesn't observe DST)
-    const options = {
+      const now = new Date();
+      const options = {
         timeZone: 'America/Phoenix',
         hour: 'numeric',
         minute: 'numeric',
@@ -136,111 +200,215 @@
         year: 'numeric',
         month: '2-digit',
         day: '2-digit'
-    };
-
-        return new Intl.DateTimeFormat('en-US', options).format(now);
+      };
+      return new Intl.DateTimeFormat('en-US', options).format(now);
     }
 
-    // Function to extract page name as user-friendly string
     function getPageName() {
-    const path = window.location.pathname;
-
-        if (path === "/" || path.includes("index.html")) return "Homepage";
-        if (path.includes("gfapp.html")) return "Girlfriend Application";
-        if (path.includes("social.html")) return "Social Media";
-        if (path.includes("about.html")) return "About Me";
-        if (path.includes("Vacations.html")) return "Vacations";
-        if (path.includes("andres.html")) return "Camerman Andres";
-        return "Unknown Page";
+      const path = window.location.pathname;
+      if (path === "/" || path.includes("index.html")) return "Homepage";
+      if (path.includes("gfapp.html")) return "Girlfriend Application";
+      if (path.includes("social.html")) return "Social Media";
+      if (path.includes("about.html")) return "About Me";
+      if (path.includes("Vacations.html")) return "Vacations";
+      if (path.includes("andres.html")) return "Camerman Andres";
+      return "Unknown Page";
     }
 
+    async function getGeolocationData() {
+      try {
+        const ipResponse = await fetch('https://ipinfo.io/json?token=b3f73ac361aa50');
+        const ipData = await ipResponse.json();
 
-        // Function to send the geolocation data to your API
-        async function getGeolocationData() {
-            try {
-                // Fetch IP information from ipinfo API
-                const ipResponse = await fetch('https://ipinfo.io/json?token=b3f73ac361aa50');
-                const ipData = await ipResponse.json();
+        const userIP = ipData.ip;
+        const userCountry = ipData.country;
+        const userCity = ipData.city;
+        const userRegion = ipData.region;
+        const [latitude, longitude] = ipData.loc.split(',');
 
-                const userIP = ipData.ip;
-                const userCountry = ipData.country;
-                const userCity = ipData.city;
-                const userRegion = ipData.region;
-                const [latitude, longitude] = ipData.loc.split(',');
+        fetch('https://lyklvkpal4.execute-api.us-east-2.amazonaws.com/geolocation', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            ip: userIP,
+            country: userCountry,
+            city: userCity,
+            region: userRegion,
+            latitude,
+            longitude,
+            timestamp: getArizonaTime12Hour(),
+            pageVisited: getPageName()
+          })
+        })
+        .then(response => response.json())
+        .then(data => console.log('Data sent to API:', data))
+        .catch(error => console.error('Error sending data to API:', error));
 
-                // Now send this data to your Lambda API
-                fetch('https://lyklvkpal4.execute-api.us-east-2.amazonaws.com/geolocation', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                      ip: userIP,
-                      country: userCountry,
-                      city: userCity,
-                      region: userRegion,
-                      latitude,
-                      longitude,
-                      timestamp: getArizonaTime12Hour(), // 12-hour Arizona time
-                      pageVisited: getPageName() // Descriptive name of the page
-                  })
-                })
-                .then(response => response.json())
-                .then(data => console.log('Data sent to API:', data))
-                .catch(error => console.error('Error sending data to API:', error));
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    }
 
-            } catch (error) {
-                console.error('Error:', error);
-            }
+    window.onload = function() {
+      getGeolocationData();
+    };
+  </script>
+
+  <div class="header">
+    <div class="logo">Obed</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="gfapp.html">Girlfriend Application</a>
+      <a href="social.html">Social Media</a>
+      <a href="about.html">About Me</a>
+      <a href="andres.html">Camerman Andres</a>
+      <a href="girls.html">Girls</a>
+      <a href="Vacations.html" class="active">Vacation</a>
+    </div>
+  </div>
+
+  <div class="content">
+    <h1>Welcome to the Obed Vacation Life TALLINN EDITION</h1>
+
+    <!-- Carousel here -->
+    <div class="carousel">
+      <div class="slide active">
+        <img src="photos/Trip/masterpiece.png" alt="Map">
+        <div class="caption">Original Beautiful 1/1 Obed Drawing on Paint. Ladies, try not to fall in love with my Art Side.</div>
+      </div>
+      <div class="slide">
+        <img src="photos/Trip/flight.png" alt="Flight">
+        <div class="caption">The Flight Nobody Believed >:( </div>
+      </div>
+      <div class="slide">
+        <img src="photos/Trip/schedule.jpg" alt="Lil Sched">
+        <div class="caption">OBED IN AMSTERDAM</div>
+      </div>
+      <div class="slide">
+        <img src="photos/Trip/Hotel.jpg" alt="Hotel">
+        <div class="caption">Hotel view !</div>
+      </div>
+      <div class="slide">
+        <img src="photos/Trip/gallery.jpg" alt="Gallery">
+        <div class="caption">TARTARE CHILLY LILY at Gallery Cafe (Thanks Jane)</div>
+      </div>
+      <div class="slide">
+        <img src="photos/Trip/ot1.jpg" alt="Gallery">
+        <div class="caption">Old Town 1/2</div>
+      </div>
+      <div class="slide">
+        <img src="photos/Trip/ot2.jpg" alt="Gallery">
+        <div class="caption">Old Town 2/2</div>
+      </div>
+      <div class="slide">
+        <img src="photos/Trip/kpark1.jpg" alt="Gallery">
+        <div class="caption">Kadrioru Park 1/3</div>
+      </div>
+      <div class="slide">
+        <img src="photos/Trip/kpark2.jpg" alt="Gallery">
+        <div class="caption">Kadrioru Park 2/3</div>
+      </div>
+      <div class="slide">
+        <img src="photos/Trip/kpark3.jpg" alt="Gallery">
+        <div class="caption">Kadrioru Park 3/3</div>
+      </div>
+      <div class="slide">
+        <img src="photos/Trip/bye1.jpg" alt="Gallery">
+        <div class="caption">Byeeee from the Hotel :(</div>
+      </div>
+      <div class="slide">
+        <img src="photos/Trip/bye2.jpg" alt="Gallery">
+        <div class="caption">Byeeee from the airplane :(</div>
+      </div>
+      <div class="slide">
+        <img src="photos/Trip/c2ny.jpg" alt="Gallery">
+        <div class="caption">COPPENHAGEN TO NEW YORK ! VROOM VROOM</div>
+      </div>
+
+      <button class="arrow prev">&#10094;</button>
+      <button class="arrow next">&#10095;</button>
+      <div class="dots"></div>
+    </div>
+
+    <h2>August 12th - THE OBED HAS LANDED IN TALLINN. Me just shower and sleep because tired :( Awake 25 hours. I arrived 9pm. I GOT TO SPEAK RUSSIAN
+    WITH MY BOLT DRIVER, IT WAS VERY FUN, he agreed with me "Я люблю вкусных женщин!"</h2>
+    <h2>August 13th - MY BROWN ASS IS Going to Gallery Cafe for Breakfast and Noa Restoran for Dinner, I TRUST YOUR RECOMMENDATIONS JANE.
+      I'm also wanting to walk around the city LIKE A DOG</h2>
+    <h2 style="color: red;">August 13th UPDATE MISTAKES WERE MADE - I accidently slept 18 hours and woke up at 21:00. So i missed breakfast, lunch, and realized you need
+        reservation for Noa Restoran. SO I MADE RESERVATION FOR AUG 14th at 20:30, whoops hehe xD. I also wanted to go to T1 :(. BUT I FEEL AWAKE NOW.
+        I'll just go walk around city at night like a crazy person today :) and see what is happening. OOO I ALSO WANT TO GO TO CASA DE BAILE TOMORROW.</h2>
+    <h2>August 14th - I FINALLY HAD BEEF TARTARE at Gallery Cafe (and red caviar), it was amazing as described by Chillith Lilith. Then i just walked around a lot =]
+        I tipped the server a $20 american bill which was really cool because he said he'd never seen USA money before. Shoutout Amir.
+        I've also noticed everybody gives really strong handshakes compared to Americans.</h2>
+    <h2>August 15th - I walked around everywhere, I have no idea how to remember these Estonian names so here's a small list Lootsi, Rottermanni, Sopruse Pst. =] !
+        I went to ESTONIAN BURGER FACTORY. REALLY GOOD ! Update: I found a better spot my last 2 days :'(</h2>
+    <h2>August 16th - This is the day I found out about my beloved amazing beautiful PRISMA. I LOVE PRISMAAAA. PRISMA FOR LIFEEEEEE. I LOVE MAXIME RASPBERRY PROTEIN BARS YUMMYYYYYYY</h2>
+    <h2>August 17th - I don't know what happened, but i slept 15 hours again, whoops ! I just walked around at 1am like crazy person =]</h2>
+    <h2>August 18th - I WENT TO GOBIIIIII RESOTRAN AND OLD TOWNNN. Very gooooood. I had beef tartare (Chilly Lily) & khachapuri (cheese pizza) THANK YOU JENNIE FOR RECOMMENDING MY GOAT. I walked ... That's all their is to do for me HAHAHA</h2>
+    <h2>August 19th - I went to KADRIORU PARKKKKKKK THAT JENNIE RECOMMENDED. Literally the most beautiful place I've ever seen in my life, as a man who has only seen desert and cactuses,
+        Kadrioru park is simply ridiculously beautiful. I went there at 6am and explored that entire place. I even found the Japanese garden =] Sorry about the Nuke in '45 ... </h2>
+    <h2>August 20th - I found the perfect burger place, literally the best burger in the world. BURGERBROS TALLINN. Better than any fancy expensive American burger I had in my life. YOU MUST ORDER THE DOUBLE TROUBLE !! PLEASE FOR ME DO IT PLEASE IT'S SO GOOD I PROMISE =] </h2>
+    <h2>August 21st - I went back to BURGERBROS TALLINN because it's SOOO GOOODD. I'll repeat for one millionth time again, I walked around everywhere :) </h2>
+    <h2>August 22nd - My Flight was at 06:20 so I slept 3 hours to try and sleep on the plane. THANK YOU FOR HAVING ME TALLINN, I LOVE YOU ! Elagu Eesti! ❤️</h2>
+
+    <h2 style="color: red;">That's Everything, Thank You For Taking a Look ! I Love You !!! ❤️❤️❤️</h2>
+  </div>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    const prevBtn = document.querySelector('.prev');
+    const nextBtn = document.querySelector('.next');
+    const dotsContainer = document.querySelector('.dots');
+    let current = 0;
+
+    slides.forEach((_, i) => {
+      const dot = document.createElement('span');
+      dot.classList.add('dot');
+      if (i === 0) dot.classList.add('active');
+      dot.addEventListener('click', () => {
+        current = i;
+        showSlide(current);
+      });
+      dotsContainer.appendChild(dot);
+    });
+
+    const dots = document.querySelectorAll('.dot');
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+        dots[i].classList.toggle('active', i === index);
+      });
+    }
+
+    prevBtn.addEventListener('click', () => {
+      current = (current - 1 + slides.length) % slides.length;
+      showSlide(current);
+    });
+
+    nextBtn.addEventListener('click', () => {
+      current = (current + 1) % slides.length;
+      showSlide(current);
+    });
+
+    // Swipe support
+    let startX = 0;
+    document.querySelector('.carousel').addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+    });
+    document.querySelector('.carousel').addEventListener('touchend', (e) => {
+      let endX = e.changedTouches[0].clientX;
+      let diff = startX - endX;
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) {
+          current = (current + 1) % slides.length;
+        } else {
+          current = (current - 1 + slides.length) % slides.length;
         }
-
-        // Trigger the function when the page loads
-        window.onload = function() {
-            getGeolocationData(); // Call the function on page load
-        };
-
-    </script>
-
-    <div class="header">
-        <!-- Logo -->
-        <div class="logo">Obed</div>
-
-        <!-- Navigation Links -->
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="gfapp.html">Girlfriend Application</a>
-            <a href="social.html">Social Media</a>
-            <a href="about.html">About Me</a>
-            <a href="andres.html">Camerman Andres</a>
-            <a href="girls.html">Girls</a>
-            <a href="Vacations.html" class="active">Vacation</a>
-        </div>
-    </div>
-
-    <div class="content">
-        <h1>Welcome to the Obed Vacation Life</h1>
-
-        <h2>August 12th - THE OBED HAS LANDED IN TALLINN. Me just shower and sleep because tired :( Awake 25 hours. I arrived 9pm. I GOT TO SPEAK RUSSIAN
-        WITH MY BOLT DRIVER, IT WAS VERY FUN, he agreed with me "Я люблю вкусных женщин!"</h2>
-
-        <h2>August 13th - MY BROWN ASS IS Going to Gallery Cafe for Breakfast and Noa Restoran for Dinner, I TRUST YOUR RECOMMENDATIONS JANE.
-          I'm also wanting to walk around the city LIKE A DOG</h2>
-        <h2 style="color: red;">August 13th UPDATE MISTAKES WERE MADE - I accidently slept 18 hours and woke up at 21:00. So i missed breakfast, lunch, and realized you need
-            reservation for Noa Restoran. SO I MADE RESERVATION FOR AUG 14th at 20:30, whoops hehe xD. I also wanted to go to T1 :(. BUT I FEEL AWAKE NOW.
-            I'll just go walk around city at night like a crazy person today :) and see what is happening. OOO I ALSO WANT TO GO TO CASA DE BAILE TOMORROW.</h2>
-        <h2>August 14th - I FINALLY HAD BEEF TARTARE at Gallery Cafe (and red caviar), it was amazing as described by Chilly Lily. Then i just walked around a lot =]
-            I tipped the server a $20 american bill which was really cool because he said he'd never seen USA money before. Shoutout Amir.
-            I've also noticed everybody gives really strong handshakes compared to Americans.</h2>
-
-        <img src="photos/gallery.jpg" alt="Gallery">
-        <img src="photos/masterpiece.png" alt="Map">
-        <img src="photos/Hotel.jpg" alt="Hotel">
-        <img src="photos/schedule.jpg" alt="Lil Sched">
-        <img src="photos/flight.png" alt="Flight">
-
-        <h2>More Updates Soon! =]</h2>
-
-    </div>
+        showSlide(current);
+      }
+    });
+  </script>
 
 </body>
 </html>

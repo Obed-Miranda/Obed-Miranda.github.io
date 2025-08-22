@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Vacations</title>
     <link rel="icon" href="photos/rose.png" type="image/png">
     <style>
         body {
@@ -65,6 +65,15 @@
             padding: 20px;
             min-height: calc(100vh - 70px); /* Ensure content fills screen minus header */
         }
+
+        .content img {
+          max-width: 100%;   /* Scale to fit device width */
+          height: auto;      /* Keep aspect ratio */
+          display: block;    /* Remove inline spacing */
+          margin: 10px auto; /* Center on page */
+          border-radius: 10px; /* Optional: make it look nice */
+          box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3); /* Optional shadow */
+      }
 
         iframe {
             margin: 20px auto;
@@ -140,8 +149,8 @@
         if (path.includes("gfapp.html")) return "Girlfriend Application";
         if (path.includes("social.html")) return "Social Media";
         if (path.includes("about.html")) return "About Me";
-        if (path.includes("andres.html")) return "Camerman Andres";
         if (path.includes("Vacations.html")) return "Vacations";
+        if (path.includes("andres.html")) return "Camerman Andres";
         return "Unknown Page";
     }
 
@@ -198,28 +207,39 @@
 
         <!-- Navigation Links -->
         <div class="nav-links">
-            <a href="index.html" class="active">Home</a>
+            <a href="index.html">Home</a>
             <a href="gfapp.html">Girlfriend Application</a>
             <a href="social.html">Social Media</a>
             <a href="about.html">About Me</a>
             <a href="andres.html">Camerman Andres</a>
             <a href="girls.html">Girls</a>
-            <a href="Vacations.html">Vacation</a>
+            <a href="Vacations.html" class="active">Vacation</a>
         </div>
     </div>
 
     <div class="content">
-        <h1>SUPPITY SUP SUP</h1>
-        <h1>VIDEO BELOW IS A SPECIAL MTV CRIBS SHOW TO THE OBED HOUSE</h1>
-        <h1>WATCH RUSSIAN KID MINECRAFT BLYAT !!!</h1>
-        <h1>Come on Mya, We Want to Say Goodnight to You !</h1>
-        <!-- Embedded YouTube Video -->
+        <h1>Welcome to the Obed Vacation Life</h1>
 
-        <iframe src="https://www.youtube.com/embed/6h2dUQVsWa8"
-                title="YouTube video player"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen>
-        </iframe>
+        <h2>August 12th - THE OBED HAS LANDED IN TALLINN. Me just shower and sleep because tired :( Awake 25 hours. I arrived 9pm. I GOT TO SPEAK RUSSIAN
+        WITH MY BOLT DRIVER, IT WAS VERY FUN, he agreed with me "Я люблю вкусных женщин!"</h2>
+
+        <h2>August 13th - MY BROWN ASS IS Going to Gallery Cafe for Breakfast and Noa Restoran for Dinner, I TRUST YOUR RECOMMENDATIONS JANE.
+          I'm also wanting to walk around the city LIKE A DOG</h2>
+        <h2 style="color: red;">August 13th UPDATE MISTAKES WERE MADE - I accidently slept 18 hours and woke up at 21:00. So i missed breakfast, lunch, and realized you need
+            reservation for Noa Restoran. SO I MADE RESERVATION FOR AUG 14th at 20:30, whoops hehe xD. I also wanted to go to T1 :(. BUT I FEEL AWAKE NOW.
+            I'll just go walk around city at night like a crazy person today :) and see what is happening. OOO I ALSO WANT TO GO TO CASA DE BAILE TOMORROW.</h2>
+        <h2>August 14th - I FINALLY HAD BEEF TARTARE at Gallery Cafe (and red caviar), it was amazing as described by Chilly Lily. Then i just walked around a lot =]
+            I tipped the server a $20 american bill which was really cool because he said he'd never seen USA money before. Shoutout Amir.
+            I've also noticed everybody gives really strong handshakes compared to Americans.</h2>
+        <h2>August 15th
+
+        <img src="photos/gallery.jpg" alt="Gallery">
+        <img src="photos/masterpiece.png" alt="Map">
+        <img src="photos/Hotel.jpg" alt="Hotel">
+        <img src="photos/schedule.jpg" alt="Lil Sched">
+        <img src="photos/flight.png" alt="Flight">
+
+        <h2>More Updates Soon! =]</h2>
 
     </div>
 
